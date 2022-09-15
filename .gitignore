@@ -1,0 +1,7 @@
+/target/*
+!/target/*.jar
+
+.project
+.classpath
+
+/bin/
