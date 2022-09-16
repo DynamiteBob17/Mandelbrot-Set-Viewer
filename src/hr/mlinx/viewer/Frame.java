@@ -40,7 +40,7 @@ public class Frame {
 				 + "0 - set default color palette\n\r"
 				 + "1,2,3,...,8,9 - set preset color palettes\n\r"
 				 + "C - create gradient color palette\n\r"
-				 + "CTRL/SHIFT - previous/next zoom\n\r"
+				 + "ARROW DOWN/UP - previous/next zoom\n\r"
 				 + "SPACE - enter coordinates manually\n\r"
 				 + "ENTER - enter image accuracy (stability/iterations threshold), recommended to increase it more and more as you zoom in\n\r"
 				 + "ESC - exit the program");

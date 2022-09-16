@@ -85,11 +85,11 @@ public class KeyInput extends KeyAdapter {
 				
 			}
 			
-		} else if (key == KeyEvent.VK_CONTROL) {
+		} else if (key == KeyEvent.VK_DOWN) {
 			
 			viewer.previousZoom();
 			
-		} else if (key == KeyEvent.VK_SHIFT) {
+		} else if (key == KeyEvent.VK_UP) {
 			
 			viewer.nextZoom();
 			
