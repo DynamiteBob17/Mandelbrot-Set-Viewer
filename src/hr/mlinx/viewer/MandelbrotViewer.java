@@ -44,7 +44,7 @@ public class MandelbrotViewer extends JPanel {
 	
 	private int stabilityThreshold;
 	private List<Entry> history;
-	private int idx;
+	private int currentEntryIdx;
 	private Color[] colors;
 	private int colorIndexFactor;
 	private int colorStart;
@@ -72,7 +72,7 @@ public class MandelbrotViewer extends JPanel {
 				new Color(165, 42, 42),
 				new Color(0, 2, 0)
 		};
-		idx = 0;
+		currentEntryIdx = 0;
 		colorIndexFactor = 256;
 		colorStart = 0;
 		gradientColors = Util.createGradientColors(colors);
@@ -94,14 +94,14 @@ public class MandelbrotViewer extends JPanel {
 		
 		Graphics2D g2 = (Graphics2D) g;
 		
-		g2.drawImage(history.get(idx).mandelbrotSet(), 0, 0, null);
+		g2.drawImage(history.get(currentEntryIdx).mandelbrotSet(), 0, 0, null);
 		drawZoomRect(g2);
 		
 	}
 	
 	private void drawMandelbrot() {
 		
-		plotter = new MandelbrotPlotter(this, history.get(idx), colorIndexFactor, gradientColors, NUM_OF_THREADS);
+		plotter = new MandelbrotPlotter(this, history.get(currentEntryIdx), colorIndexFactor, gradientColors, NUM_OF_THREADS);
 
 		plotter.plot();
 		
@@ -188,14 +188,14 @@ public class MandelbrotViewer extends JPanel {
 						
 					}
 					
-					Coords coords = history.get(idx).coords();
+					Coords coords = history.get(currentEntryIdx).coords();
 					
 					x1 = Util.map(x1, 0, getWidth(), coords.realStart(), coords.realEnd());
 					x2 = Util.map(x2, 0, getWidth(), coords.realStart(), coords.realEnd());
 					y1 = Util.map(y1, 0, getHeight(), coords.imagStart(), coords.imagEnd());
 					y2 = Util.map(y2, 0, getHeight(), coords.imagStart(), coords.imagEnd());
 					
-					history.add(++idx, new Entry(new Coords(x1, x2, y1, y2), 
+					history.add(++currentEntryIdx, new Entry(new Coords(x1, x2, y1, y2), 
 												 new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB),
 												 new double[getWidth() * getHeight()],
 												 stabilityThreshold));
@@ -274,11 +274,11 @@ public class MandelbrotViewer extends JPanel {
 	
 	public void previousZoom() {
 		
-		if (idx > 0) {
+		if (currentEntryIdx > 0) {
 			
-			--idx;
+			--currentEntryIdx;
 			
-			colorIdx(idx);
+			colorIdx(currentEntryIdx);
 			
 		}
 		
@@ -286,11 +286,11 @@ public class MandelbrotViewer extends JPanel {
 	
 	public void nextZoom() {
 		
-		if (idx < history.size() - 1) {
+		if (currentEntryIdx < history.size() - 1) {
 			
-			++idx;
+			++currentEntryIdx;
 			
-			colorIdx(idx);
+			colorIdx(currentEntryIdx);
 			
 		}
 		
@@ -318,7 +318,7 @@ public class MandelbrotViewer extends JPanel {
 	
 	private void removeSubsequentEntries() {
 		
-		for (int i = idx + 1; i < history.size(); ++i) {
+		for (int i = currentEntryIdx + 1; i < history.size(); ++i) {
 			
 			history.remove(i--);
 			
@@ -330,9 +330,9 @@ public class MandelbrotViewer extends JPanel {
 		
 		Coords coordsNew = new Coords(realStart, realEnd, imagStart, imagEnd);
 		
-		if (!history.get(idx).coords().equals(coordsNew)) {
+		if (!history.get(currentEntryIdx).coords().equals(coordsNew)) {
 			
-			history.add(++idx, new Entry(coordsNew, new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB),
+			history.add(++currentEntryIdx, new Entry(coordsNew, new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB),
 										 new double[getWidth() * getHeight()], stabilityThreshold));
 			
 			removeSubsequentEntries();
@@ -345,7 +345,7 @@ public class MandelbrotViewer extends JPanel {
 	
 	public double[] getCoordinates() {
 		
-		Coords coords = history.get(idx).coords();
+		Coords coords = history.get(currentEntryIdx).coords();
 		
 		return new double[] {
 				coords.realStart(),
@@ -362,9 +362,9 @@ public class MandelbrotViewer extends JPanel {
 			
 			this.stabilityThreshold = stabilityThreshold;
 			
-			Coords coords = history.get(idx).coords();
-			history.remove(idx);
-			history.add(idx, new Entry(coords, new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB),
+			Coords coords = history.get(currentEntryIdx).coords();
+			history.remove(currentEntryIdx);
+			history.add(currentEntryIdx, new Entry(coords, new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB),
 									   new double[getWidth() * getHeight()], stabilityThreshold));
 			
 			drawMandelbrot();
@@ -400,8 +400,8 @@ public class MandelbrotViewer extends JPanel {
 	
 	private void colorPixels() {
 		
-		int[] pixels = ((DataBufferInt) history.get(idx).mandelbrotSet().getRaster().getDataBuffer()).getData();
-		double[] smoothed = history.get(idx).smoothed();
+		int[] pixels = ((DataBufferInt) history.get(currentEntryIdx).mandelbrotSet().getRaster().getDataBuffer()).getData();
+		double[] smoothed = history.get(currentEntryIdx).smoothed();
 		double smooth;
 		
 		for (int i = 0; i < pixels.length; ++i) {
