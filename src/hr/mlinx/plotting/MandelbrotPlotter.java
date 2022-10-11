@@ -120,7 +120,7 @@ public class MandelbrotPlotter {
 					smoothed = 0;
 				entry.smoothed()[i] = smoothed;
 				
-				colorIdx = ((int) (Math.sqrt(smoothed) * colorIndexFactor) + viewer.getColorStart()) % gradientColors.length;
+				colorIdx = ((int) (smoothed * colorIndexFactor) + viewer.getColorStart()) % gradientColors.length;
 				pixels[i] = gradientColors[colorIdx].getRGB();
 				
 			}

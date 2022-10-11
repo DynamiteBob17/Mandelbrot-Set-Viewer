@@ -73,7 +73,7 @@ public class MandelbrotViewer extends JPanel {
 				new Color(0, 2, 0)
 		};
 		currentEntryIdx = 0;
-		colorIndexFactor = 256;
+		colorIndexFactor = 128;
 		colorStart = 0;
 		gradientColors = Util.createGradientColors(colors);
 		colorPresets = new ArrayList<>();
@@ -411,7 +411,7 @@ public class MandelbrotViewer extends JPanel {
 			if (smooth < 0.0)
 				pixels[i] = 0;
 			else
-				pixels[i] = gradientColors[((int) (Math.sqrt(smooth) * colorIndexFactor) + colorStart) % gradientColors.length].getRGB();
+				pixels[i] = gradientColors[((int) (smooth * colorIndexFactor) + colorStart) % gradientColors.length].getRGB();
 			
 		}
 		

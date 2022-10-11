@@ -22,7 +22,7 @@ public class ColorPresets {
 				Color.MAGENTA
 		};
 		gradientColors = Util.createGradientColors(colors);
-		colorPresets.add(new ColorPreset(colors, 256, 0, gradientColors));
+		colorPresets.add(new ColorPreset(colors, 128, 0, gradientColors));
 		
 		colors = new Color[] {
 				Color.BLACK,
@@ -33,7 +33,7 @@ public class ColorPresets {
 				Color.RED
 		};
 		gradientColors = Util.createGradientColors(colors);
-		colorPresets.add(new ColorPreset(colors, 256, 0, gradientColors));
+		colorPresets.add(new ColorPreset(colors, 128, 0, gradientColors));
 		
 		colors = new Color[] {
 				new Color(209, 1, 27),
@@ -41,7 +41,7 @@ public class ColorPresets {
 				Color.BLACK
 		};
 		gradientColors = Util.createGradientColors(colors);
-		colorPresets.add(new ColorPreset(colors, 256, 0, gradientColors));
+		colorPresets.add(new ColorPreset(colors, 128, 0, gradientColors));
 		
 		colors = new Color[] {
 				Color.WHITE,
@@ -50,7 +50,7 @@ public class ColorPresets {
 				new Color(255, 0, 204)
 		};
 		gradientColors = Util.createGradientColors(colors);
-		colorPresets.add(new ColorPreset(colors, 256, 0, gradientColors));
+		colorPresets.add(new ColorPreset(colors, 128, 0, gradientColors));
 		
 		colors = new Color[] {
 				new Color(74, 7, 203),
@@ -60,7 +60,7 @@ public class ColorPresets {
 				new Color(112, 24, 203)
 		};
 		gradientColors = Util.createGradientColors(colors);
-		colorPresets.add(new ColorPreset(colors, 192, 0, gradientColors));
+		colorPresets.add(new ColorPreset(colors, 196, 0, gradientColors));
 		
 		colors = new Color[] {
 				new Color(132, 94, 194),
@@ -71,7 +71,7 @@ public class ColorPresets {
 				new Color(249, 248, 113)
 		};
 		gradientColors = Util.createGradientColors(colors);
-		colorPresets.add(new ColorPreset(colors, 256, 1536, gradientColors));
+		colorPresets.add(new ColorPreset(colors, 128, 1536, gradientColors));
 		
 		colors = new Color[] {
 				new Color(21, 23, 37),
@@ -83,7 +83,7 @@ public class ColorPresets {
 				new Color(218, 145, 0)
 		};
 		gradientColors = Util.createGradientColors(colors);
-		colorPresets.add(new ColorPreset(colors, 128, 0, gradientColors));
+		colorPresets.add(new ColorPreset(colors, 64, 0, gradientColors));
 		
 		colors = new Color[] {
 				new Color(255, 105, 97),
@@ -96,7 +96,7 @@ public class ColorPresets {
 				new Color(199, 128, 232)
 		};
 		gradientColors = Util.createGradientColors(colors);
-		colorPresets.add(new ColorPreset(colors, 512, 0, gradientColors));
+		colorPresets.add(new ColorPreset(colors, 256, 0, gradientColors));
 		
 		colors = new Color[] {
 				new Color(46, 43, 40),
@@ -110,7 +110,7 @@ public class ColorPresets {
 				new Color(255, 128, 255)
 		};
 		gradientColors = Util.createGradientColors(colors);
-		colorPresets.add(new ColorPreset(colors, 256, 0, gradientColors));
+		colorPresets.add(new ColorPreset(colors, 128, 0, gradientColors));
 		
 	}
 	
