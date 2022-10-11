@@ -70,7 +70,7 @@ public class DrawMandelbrotTest extends JPanel implements MouseMotionListener {
 				z = new Complex(0, 0);
 				iterations = 0;
 				
-				while (z.mod() < 2 && iterations < STABILITY_THRESHOLD) {
+				while (z.norm() < 256 && iterations < STABILITY_THRESHOLD) {
 					z.squared();
 					z.add(c);
 					++iterations;

@@ -25,9 +25,9 @@ public class Complex {
 		this.y += addend.y;
 	}
 	
-	public double mod() {
+	public double norm() {
 		if (x != 0 || y != 0)
-            return Math.sqrt(x * x + y * y);
+            return Math.pow(Math.sqrt(x * x + y * y), 2);
         else 
         	return 0.0;
 	}

@@ -99,7 +99,7 @@ public class MandelbrotPlotter {
 				c = new Complex(Util.map(x, 0, w, x1, x2),
 						 		Util.map(y, 0, h, y1, y2));
 				
-				while (z.mod() < 2.0 && iterations < stabilityThreshold) {
+				while (z.norm() < 256 && iterations < stabilityThreshold) {
 					
 					z.squared();
 					z.add(c);
@@ -115,7 +115,7 @@ public class MandelbrotPlotter {
 					
 				}
 				
-				smoothed = iterations - 1 - Util.log2(Util.log2(z.mod()));
+				smoothed = iterations - Util.log2(Util.log2(z.norm()));
 				if (smoothed < 0.0)
 					smoothed = 0;
 				entry.smoothed()[i] = smoothed;
