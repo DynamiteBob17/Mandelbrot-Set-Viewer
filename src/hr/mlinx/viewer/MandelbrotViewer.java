@@ -59,7 +59,7 @@ public class MandelbrotViewer extends JPanel {
 		addZoomListeners();
 		
 		stabilityThreshold = 1000;
-		Coords coords = new Coords(-2, 1, -1, 1);
+		Coords coords = new Coords(-2.1, 0.9, -1.2, 1.2);
 		BufferedImage mandelbrotSet = new BufferedImage(Util.RES.width, Util.RES.height,
 											 BufferedImage.TYPE_INT_RGB);
 		history = new LinkedList<>();
