@@ -1,5 +1,9 @@
 package hr.mlinx.viewer;
 
+import java.awt.GraphicsDevice;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -22,13 +26,40 @@ public class Frame {
 		Util.setUIFonts();
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setUndecorated(true);
-		frame.setResizable(false);
 		frame.add(viewer);
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		frame.setVisible(true);
+		setFullScreen(frame);
 		
 		showControls();
+	}
+	
+	private static void setFullScreen(JFrame frame) {
+		GraphicsDevice device = frame.getGraphicsConfiguration().getDevice();
+		boolean isSupported = device.isFullScreenSupported();
+		
+		if (isSupported) {
+			frame.setUndecorated(true);
+			frame.setResizable(true);
+			
+			frame.addFocusListener(new FocusListener() {
+				@Override
+				public void focusGained(FocusEvent e) {
+					frame.setAlwaysOnTop(true);
+				}
+
+				@Override
+				public void focusLost(FocusEvent e) {
+					frame.setAlwaysOnTop(false);
+				}
+			});
+			
+			device.setFullScreenWindow(frame);
+		} else {
+			frame.setUndecorated(true);
+			frame.setResizable(false);
+			
+			frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			frame.setVisible(true);
+		}
 	}
 	
 	public static void showControls() {
