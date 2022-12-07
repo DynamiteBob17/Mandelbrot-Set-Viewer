@@ -36,7 +36,7 @@ public class Frame {
 		GraphicsDevice device = frame.getGraphicsConfiguration().getDevice();
 		boolean isSupported = device.isFullScreenSupported();
 		
-		if (isSupported) {
+		if (isSupported && System.getProperty("os.name").startsWith("Linux")) {
 			frame.setUndecorated(true);
 			frame.setResizable(true);
 			
