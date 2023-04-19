@@ -1,8 +1,7 @@
-/target/*
-!/target/*.jar
+/target/
+/bin/
 
 .project
 .classpath
-
-/bin/
-/target/
+.settings
+.idea
